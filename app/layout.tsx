@@ -17,8 +17,8 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MyHub",
-  description: "A personal website for notes, projects, experiments, and future AI tools.",
+  title: "Ellie and Eva's Sky Club",
+  description: "A playful learning website for two curious girls to explore numbers, wonder, and the world.",
 };
 
 export default function RootLayout({

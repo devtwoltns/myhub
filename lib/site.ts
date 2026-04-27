@@ -1,114 +1,94 @@
-export const navigation = [
-  { label: "Home", href: "/" },
-  { label: "Work", href: "/work" },
-  { label: "Notes", href: "/notes" },
-  { label: "Contact", href: "/contact" },
-];
+export const learners = {
+  ellie: {
+    slug: "ellie",
+    name: "Ellie",
+    ageLabel: "8 years old",
+    summary: "Patterns, puzzles, questions, and bigger ideas she can reason about.",
+  },
+  eva: {
+    slug: "eva",
+    name: "Eva",
+    ageLabel: "4 years old",
+    summary: "Playful, hands-on discovery with short activities and simple language.",
+  },
+} as const;
 
-export const heroFacts = [
+export const subjects = [
   {
-    label: "Framework",
-    value: "Next.js App Router",
-    detail: "One app for pages, route handlers, and future server-side features.",
+    slug: "math",
+    title: "Number Garden",
+    eyebrow: "Count, sort, and spot patterns",
+    summary: "A sunny place for numbers, shapes, puzzles, and tiny brain games.",
+    icon: "123",
+    splashClass: "subject-card-math",
   },
   {
-    label: "Content",
-    value: "Composable sections",
-    detail: "Easy to grow into case studies, writing, or landing pages.",
+    slug: "science",
+    title: "Wonder Lab",
+    eyebrow: "Ask why and see what happens",
+    summary: "A curious place for nature, experiments, discoveries, and big questions.",
+    icon: "WOW",
+    splashClass: "subject-card-science",
   },
-  {
-    label: "Future",
-    value: "AI + database ready",
-    detail: "Stable folders already exist for model integration and persistent data.",
-  },
-];
+] as const;
 
-export const highlightCards = [
-  {
-    kicker: "Structure",
-    title: "Route code stays in app, feature logic does not.",
+export const subjectPages = {
+  math: {
+    title: "Number Garden",
+    eyebrow: "Count, compare, and play",
     summary:
-      "Pages should compose sections and fetch data. Reusable UI and domain logic live outside the router so future features do not become file-system soup.",
+      "This is where numbers, shapes, and patterns feel like play instead of homework.",
+    focusPoints: [
+      "Ellie gets puzzles, measurement, clocks, patterns, and bigger thinking games.",
+      "Eva gets counting, sorting, matching, shapes, and movement-based play.",
+    ],
   },
-  {
-    kicker: "AI",
-    title: "Server boundaries first.",
+  science: {
+    title: "Wonder Lab",
+    eyebrow: "Look closely and try things out",
     summary:
-      "Model calls belong in route handlers or server-side modules, not browser components. That keeps secrets safe and makes experimentation easier to replace later.",
+      "This is where questions turn into noticing, testing, splashing, mixing, and discovering.",
+    focusPoints: [
+      "Ellie gets to compare, predict, record, and explain what she notices.",
+      "Eva gets to touch, pour, watch, and ask what happens next.",
+    ],
   },
-  {
-    kicker: "Data",
-    title: "Delay the database, prepare the interface.",
-    summary:
-      "Use plain modules for content and adapters for persistence. That lets you add Postgres later without refactoring every page that reads data.",
-  },
-];
+} as const;
 
-export const futureTrack = [
-  {
-    kicker: "Now",
-    title: "Portfolio and notes",
-    summary: "Launch the public shell and make it easy to publish work, writing, and contact info.",
+export const learnerPages = {
+  math: {
+    ellie: {
+      title: "Ellie's Number Garden",
+      intro: "A place for patterns, number adventures, logic games, and everyday problem-solving.",
+      ideas: ["Number puzzles", "Fractions with food", "Money and measurement", "Pattern hunts"],
+    },
+    eva: {
+      title: "Eva's Number Garden",
+      intro: "A place for counting, shapes, matching, sorting, and playful early number ideas.",
+      ideas: ["Count toys", "Shape scavenger hunts", "Sort by color and size", "Compare more and less"],
+    },
   },
-  {
-    kicker: "Next",
-    title: "Search or assistant",
-    summary: "Add a route-backed AI helper that can answer from your projects, notes, or profile data.",
+  science: {
+    ellie: {
+      title: "Ellie's Wonder Lab",
+      intro: "A place for asking why, testing ideas, and keeping track of simple observations.",
+      ideas: ["Weather journal", "Plant growth tracking", "Kitchen experiments", "Magnet and motion questions"],
+    },
+    eva: {
+      title: "Eva's Wonder Lab",
+      intro: "A place for touching, watching, mixing, and noticing what changes.",
+      ideas: ["Sink or float", "Nature walks", "Color mixing", "Ice and water play"],
+    },
   },
-  {
-    kicker: "Later",
-    title: "Accounts or submissions",
-    summary: "Introduce auth and a database only when there is a real workflow that needs persistence.",
-  },
-];
+} as const;
 
-export const systemLayers = [
-  {
-    kicker: "Presentation",
-    title: "Components and sections",
-    summary: "UI primitives, layout, and visual systems should remain easy to restyle without touching business logic.",
-  },
-  {
-    kicker: "Domain",
-    title: "Features and site data",
-    summary: "Feature modules can later own schemas, transforms, search indexes, and page-level loading logic.",
-  },
-  {
-    kicker: "Integrations",
-    title: "AI, analytics, and db adapters",
-    summary: "External systems should enter through narrow modules so provider swaps do not fan out across the codebase.",
-  },
-];
+export type SubjectSlug = keyof typeof subjectPages;
+export type LearnerSlug = keyof typeof learners;
 
-export const workCards = [
-  {
-    kicker: "Case study",
-    title: "Flagship project",
-    summary: "A long-form breakdown of a product, system, redesign, or engineering effort.",
-  },
-  {
-    kicker: "Experiment",
-    title: "Lab builds",
-    summary: "Shorter entries for prototypes, interface explorations, or AI-assisted experiments.",
-  },
-  {
-    kicker: "Archive",
-    title: "Selected older work",
-    summary: "A lighter-weight shelf for past projects that still matter but do not need full narrative treatment.",
-  },
-];
+export function isSubjectSlug(value: string): value is SubjectSlug {
+  return value in subjectPages;
+}
 
-export const noteTopics = [
-  {
-    title: "Build logs",
-    summary: "Write short progress notes as the website evolves. This makes future retrospectives and sharing easier.",
-  },
-  {
-    title: "Systems thinking",
-    summary: "Capture architecture decisions, tradeoffs, and the reasons behind tool choices while they are still fresh.",
-  },
-  {
-    title: "AI experiments",
-    summary: "Document prompts, evaluation notes, and product ideas as you test what is actually useful.",
-  },
-];
+export function isLearnerSlug(value: string): value is LearnerSlug {
+  return value in learners;
+}
